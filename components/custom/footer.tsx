@@ -4,7 +4,7 @@ import Link from 'next/link'
 const links = [
     { title: 'Problems', href: '/problems' },
     // { title: 'Essays', href: '/essays' },
-    { title: 'About', href: '/about' },
+    { title: 'About Us', href: '/aboutus' },
 ]
 
 export default function FooterSection() {
