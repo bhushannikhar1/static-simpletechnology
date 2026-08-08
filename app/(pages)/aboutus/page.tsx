@@ -1,6 +1,6 @@
 
 import AboutSection from "@/components/custom/about-section";
-import FooterSection from "@/components/custom/footer-1";
+import FooterSection from "@/components/custom/footer";
 
 import HeroHeader from "@/components/custom/header"
 
