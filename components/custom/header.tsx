@@ -39,6 +39,7 @@ import {
 } from "@/components/ui/accordion"
 import { cn } from "@/lib/utils"
 import { SimpleTechnologyLogo } from "./simple-technology-logo"
+import {ModeToggle} from "@/components/custom/theme-toggle"
 
 interface FeatureLink {
   href: string
@@ -137,6 +138,8 @@ export default function Header() {
                   size="sm"
                 />
               </div> */}
+              <ModeToggle></ModeToggle>
+               
             </div>
           </div>
         </div>
@@ -281,6 +284,7 @@ function ListItem({
                 {description}
               </p>
             </div>
+            
           </Link>
         }
       />
