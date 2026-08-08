@@ -5,6 +5,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 // import { ThemeToggle } from '../../theme-toggle'
 import { SimpleTechnologyLogo } from '@/components/custom/simple-technology-logo'
+import { ModeToggle } from './theme-toggle'
 
 
 const menuItems = [
@@ -107,7 +108,7 @@ export const HeroHeader = () => {
                             </div>
                             <div className="flex w-full flex-col items-center space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
                                 
-                                {/* <ThemeToggle></ThemeToggle> */}
+                               <ModeToggle></ModeToggle>
                             </div>
                         </div>
                     </div>

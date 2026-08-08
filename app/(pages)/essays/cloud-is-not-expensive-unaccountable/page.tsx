@@ -1407,13 +1407,14 @@ Cost</code></pre>
       That is the real meaning of cloud accountability.
     </p>
 
-    <p class="text-xl font-semibold text-neutral-950">
-      Cloud is not expensive.
-    </p>
+   <p class="text-xl font-semibold text-neutral-950 dark:text-neutral-50">
+  Cloud is not expensive.
+</p>
 
-    <p class="text-xl font-semibold text-neutral-950">
-      Unaccountable architecture is.
-    </p>
+<p class="text-xl font-semibold text-neutral-950 dark:text-neutral-50">
+  Unaccountable architecture is.
+</p>
+
 
     <p>
       And the next generation of technology leaders will be defined by how
