@@ -114,7 +114,7 @@ export default function Problems() {
               {/* Dynamic Status Label */}
               <div className="mt-3 flex items-center justify-between px-1 text-sm text-muted-foreground">
                 <span>
-                  Showing {filteredProblems.length} of {problemList.length} analysis articles
+                  Showing {filteredProblems.length} of {problemList.length} analysis essays
                 </span>
                 {searchQuery && (
                   <button 
