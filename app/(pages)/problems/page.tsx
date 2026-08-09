@@ -11,42 +11,64 @@ export default function Problems() {
       title: "Why Is Cloud Spending Often Unaccountable in Organizations?", 
       link: "cloud-spending-unaccountable", 
       description: "An analysis of hidden variables, decentralized provisioning, and why traditional finance structures struggle to track real-time cloud operational expenses.", 
-      status: "PUBLISHED" 
+      status: "PUBLISHED",
+      tags: ["FinOps", "Governance", "Finance"]
     },
     { 
       title: "Why Cloud Infrastructure Becomes Inefficient Over Time", 
       link: "cloud-infra-inefficient-overtime", 
       description: "Exploring the phenomenon of 'cloud drift'—how architectural neglect, legacy migrations, and unmanaged scaling slowly degrade system efficiency.", 
-      status: "PUBLISHED" 
+      status: "PUBLISHED",
+      tags: ["Architecture", "Infrastructure", "Scaling"]
     },
     { 
       title: "Why Cloud Optimization Is Not Straightforward", 
       link: "cloud-optimization-not-straightforward", 
       description: "Why simple cost-cutting exercises fail, and why true cloud efficiency requires balancing performance margins, engineering trade-offs, and software design.", 
-      status: "PUBLISHED" 
+      status: "PUBLISHED",
+      tags: ["FinOps", "Performance", "Optimization"]
     },
     { 
       title: "How Organizations Should Approach Cloud Migration", 
       link: "approach-cloud-migration", 
       description: "A framework for transitioning workloads safely without replicating on-premises operational antipatterns or blowing past initial budgets.", 
-      status: "PUBLISHED" 
+      status: "PUBLISHED",
+      tags: ["Migration", "Strategy", "Operations"]
     },
     { 
       title: "Why Go to the Cloud When On-Premises Servers Exist?", 
       link: "why-go-cloud", 
       description: "A deep dive into the strategic advantages, scaling challenges, and economic realities that drove modern business architectures away from private hardware.", 
-      status: "PUBLISHED" 
+      status: "PUBLISHED",
+      tags: ["Strategy", "Economics", "Infrastructure"]
     },
   ];
 
   // State to hold user input text
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filters items dynamically based on title matching text input
-  const filteredProblems = problemList.filter((item) =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    item.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // 1. Break the input string into individual search terms using commas or spaces
+  // 2. Filter out empty strings caused by trailing or double punctuation
+  const searchTerms = searchQuery
+    .split(/[,,]/) // Splits on commas. Switch to /[,\s]+/ if you want space-splitting too
+    .map(term => term.trim().toLowerCase())
+    .filter(term => term.length > 0);
+
+  // Filters items dynamically based on multi-term search
+  const filteredProblems = problemList.filter((item) => {
+    // If search box is completely empty, display everything
+    if (searchTerms.length === 0) return true;
+
+    // Matches if ANY typed term matches the title, description, or tags (OR Logic)
+    // To require matching ALL terms instead, change `.some` below to `.every`
+    return searchTerms.some((term) => {
+      const matchTitle = item.title.toLowerCase().includes(term);
+      const matchDesc = item.description.toLowerCase().includes(term);
+      const matchTags = item.tags.some(tag => tag.toLowerCase().includes(term));
+      
+      return matchTitle || matchDesc || matchTags;
+    });
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
@@ -84,7 +106,7 @@ export default function Problems() {
                   id="search"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search across cloud system analysis problems..."
+                  placeholder="Search tags using commas (e.g. economics, strategy)..."
                   className="block w-full rounded-xl border border-border bg-card py-4 pl-12 pr-4 text-base placeholder-muted-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 md:text-lg"
                 />
               </div>
@@ -126,16 +148,25 @@ export default function Problems() {
                   <div className="flex flex-col justify-between items-start gap-4">
                     <div className="space-y-3 w-full">
                       {/* Meta Layout Line */}
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className="inline-flex items-center rounded-md bg-emerald-500/10 px-2 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
                           {item.status}
                         </span>
+                        
+                        {/* Render individual tags mapping */}
+                        {item.tags.map((tag, tagIdx) => (
+                          <span 
+                            key={tagIdx} 
+                            className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
 
                       {/* Main Navigation Hyperlink Header */}
                       <h2 className="text-xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary md:text-2xl">
                         <Link href={`/problems/${item.link}`} className="focus:outline-none">
-                          {/* Absolute positioning makes full bounding box link block interactive */}
                           <span className="absolute inset-0 rounded-2xl" aria-hidden="true" />
                           {item.title}
                         </Link>

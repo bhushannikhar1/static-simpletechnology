@@ -1,3 +1,4 @@
+import EssayTags from "@/components/custom/EssayTags";
 import FooterSection from "@/components/custom/footer";
 import { HeroHeader } from "@/components/custom/header2";
 
@@ -28,12 +29,13 @@ export default async function EssayDetailPage({ params }: EssayPageProps) {
   const essay = {
     status: "PUBLISHED",
     description: "Why most businesses misunderstand cloud spending—and why that will define the next generation of technology leaders.",
-    title: "Cloud Is Not Expensive. It’s Unaccountable."
+    title: "Cloud Is Not Expensive. It’s Unaccountable.",
+    tags: ["FinOps", "Governance", "Finance"]
   }
-  
-  
-  
-  
+
+
+
+
   const sanitizedEssayContent = `<article >
 
   <!-- Essay -->
@@ -1433,34 +1435,40 @@ Cost</code></pre>
       <section className="bg-background py-16 md:py-32 bg-muted dark:bg-background">
         <div className="mx-auto max-w-5xl space-y-12 px-2">
           <main className="mx-auto max-w-4xl space-y-8 px-4 py-12">
-            
+
 
             <header className="space-y-4 py-2">
               <p className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 {essay.status.toLowerCase()}
               </p>
-              
+
               <h1 className="text-balance text-4xl font-light tracking-tight text-foreground md:text-5xl">{essay.title}</h1>
               {essay.description && (
                 <p className="max-w-3xl text-lg text-muted-foreground">{essay.description}</p>
               )}
-             
+
+              {/* Structured Metadata Row */}
+              <div className="flex items-center gap-3 pt-2 text-sm text-muted-foreground">
+                <span className="font-medium tracking-wide">Tags</span>
+                
+                <EssayTags tags={essay.tags} />
+              </div>
             </header>
 
             <article className="py-2">
-             
-                <article
-                  className="essay-content"
-                  dangerouslySetInnerHTML={{ __html: sanitizedEssayContent }}
-                />
-              
+
+              <article
+                className="essay-content"
+                dangerouslySetInnerHTML={{ __html: sanitizedEssayContent }}
+              />
+
             </article>
-            
+
           </main>
           <FooterSection />
         </div>
       </section>
-    
+
     </div>
   );
 }
