@@ -7,38 +7,45 @@ import Link from "next/link";
 
 export default function Problems() {
   const problemList = [
-    { 
-      title: "Why Is Cloud Spending Often Unaccountable in Organizations?", 
-      link: "cloud-spending-unaccountable", 
-      description: "An analysis of hidden variables, decentralized provisioning, and why traditional finance structures struggle to track real-time cloud operational expenses.", 
+    {
+      title: "Why does your business need a digital presence, and how can you start building one?",
+      link: "why-build-digital-presence",
+      description: "A practical guide to building a digital foundation for your business—from owning a domain and using professional email to creating a website, becoming discoverable online, building trust, and making it easier for customers to connect with you.",
+      status: "PUBLISHED",
+      tags: ["Digital Presence", "Small Business", "Strategy", "Non-Technical Audience"]
+    },
+    {
+      title: "Why Is Cloud Spending Often Unaccountable in Organizations?",
+      link: "cloud-spending-unaccountable",
+      description: "An analysis of hidden variables, decentralized provisioning, and why traditional finance structures struggle to track real-time cloud operational expenses.",
       status: "PUBLISHED",
       tags: ["FinOps", "Governance", "Finance"]
     },
-    { 
-      title: "Why Cloud Infrastructure Becomes Inefficient Over Time", 
-      link: "cloud-infra-inefficient-overtime", 
-      description: "Exploring the phenomenon of 'cloud drift'—how architectural neglect, legacy migrations, and unmanaged scaling slowly degrade system efficiency.", 
+    {
+      title: "Why Cloud Infrastructure Becomes Inefficient Over Time",
+      link: "cloud-infra-inefficient-overtime",
+      description: "Exploring the phenomenon of 'cloud drift'—how architectural neglect, legacy migrations, and unmanaged scaling slowly degrade system efficiency.",
       status: "PUBLISHED",
       tags: ["Architecture", "Infrastructure", "Scaling"]
     },
-    { 
-      title: "Why Cloud Optimization Is Not Straightforward", 
-      link: "cloud-optimization-not-straightforward", 
-      description: "Why simple cost-cutting exercises fail, and why true cloud efficiency requires balancing performance margins, engineering trade-offs, and software design.", 
+    {
+      title: "Why Cloud Optimization Is Not Straightforward",
+      link: "cloud-optimization-not-straightforward",
+      description: "Why simple cost-cutting exercises fail, and why true cloud efficiency requires balancing performance margins, engineering trade-offs, and software design.",
       status: "PUBLISHED",
       tags: ["FinOps", "Performance", "Optimization"]
     },
-    { 
-      title: "How Organizations Should Approach Cloud Migration", 
-      link: "approach-cloud-migration", 
-      description: "A framework for transitioning workloads safely without replicating on-premises operational antipatterns or blowing past initial budgets.", 
+    {
+      title: "How Organizations Should Approach Cloud Migration",
+      link: "approach-cloud-migration",
+      description: "A framework for transitioning workloads safely without replicating on-premises operational antipatterns or blowing past initial budgets.",
       status: "PUBLISHED",
       tags: ["Migration", "Strategy", "Operations"]
     },
-    { 
-      title: "Why Go to the Cloud When On-Premises Servers Exist?", 
-      link: "why-go-cloud", 
-      description: "A deep dive into the strategic advantages, scaling challenges, and economic realities that drove modern business architectures away from private hardware.", 
+    {
+      title: "Why Go to the Cloud When On-Premises Servers Exist?",
+      link: "why-go-cloud",
+      description: "A deep dive into the strategic advantages, scaling challenges, and economic realities that drove modern business architectures away from private hardware.",
       status: "PUBLISHED",
       tags: ["Strategy", "Economics", "Infrastructure"]
     },
@@ -65,7 +72,7 @@ export default function Problems() {
       const matchTitle = item.title.toLowerCase().includes(term);
       const matchDesc = item.description.toLowerCase().includes(term);
       const matchTags = item.tags.some(tag => tag.toLowerCase().includes(term));
-      
+
       return matchTitle || matchDesc || matchTags;
     });
   });
@@ -73,7 +80,7 @@ export default function Problems() {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <HeroHeader />
-      
+
       <main className="flex-grow">
         {/* Page Hero Header Zone */}
         <section className="border-b border-border bg-muted/30 py-16 md:py-24">
@@ -90,7 +97,7 @@ export default function Problems() {
         {/* Dynamic Search & Content List Section */}
         <section className="py-12 md:py-16">
           <div className="mx-auto max-w-4xl px-6 lg:px-8">
-            
+
             {/* Navigable Control Hub: Sticky Input Shell */}
             <div className="mb-10">
               <div className="relative rounded-2xl shadow-sm">
@@ -110,14 +117,14 @@ export default function Problems() {
                   className="block w-full rounded-xl border border-border bg-card py-4 pl-12 pr-4 text-base placeholder-muted-foreground transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 md:text-lg"
                 />
               </div>
-              
+
               {/* Dynamic Status Label */}
               <div className="mt-3 flex items-center justify-between px-1 text-sm text-muted-foreground">
                 <span>
                   Showing {filteredProblems.length} of {problemList.length} analysis essays
                 </span>
                 {searchQuery && (
-                  <button 
+                  <button
                     onClick={() => setSearchQuery("")}
                     className="text-primary hover:underline font-medium text-xs"
                   >
@@ -141,8 +148,8 @@ export default function Problems() {
             {/* List Results Container Layout */}
             <div className="space-y-6">
               {filteredProblems.map((item, index) => (
-                <article 
-                  key={index} 
+                <article
+                  key={index}
                   className="group relative rounded-2xl border border-border bg-card p-6 md:p-8 transition-all duration-200 hover:shadow-md hover:border-muted-foreground/30"
                 >
                   <div className="flex flex-col justify-between items-start gap-4">
@@ -152,11 +159,11 @@ export default function Problems() {
                         <span className="inline-flex items-center rounded-md bg-emerald-500/10 px-2 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400 ring-1 ring-inset ring-emerald-500/20">
                           {item.status}
                         </span>
-                        
+
                         {/* Render individual tags mapping */}
                         {item.tags.map((tag, tagIdx) => (
-                          <span 
-                            key={tagIdx} 
+                          <span
+                            key={tagIdx}
                             className="inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border"
                           >
                             {tag}
@@ -171,13 +178,13 @@ export default function Problems() {
                           {item.title}
                         </Link>
                       </h2>
-                      
+
                       {/* Description Body Line Clamp */}
                       <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2 md:text-base">
                         {item.description || "Read through our full analytical breakdown, root cause analysis, and remediation strategies for this architectural pattern."}
                       </p>
                     </div>
-                    
+
                     {/* Visual Anchor Indicator for navigation intent */}
                     <div className="text-sm font-medium text-primary flex items-center gap-1 group-hover:underline mt-2">
                       Analyze Problem <span>&rarr;</span>
